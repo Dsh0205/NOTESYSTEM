@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SHANLIC LIFE</title>
+  <link rel="stylesheet" href="style.css">
+  <!-- 引入 marked 库用于解析 Markdown -->
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <!-- 引入 FontAwesome 用于图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="app-container">
+    <!-- 左侧侧边栏 -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <img src="assets/logo.jpg" alt="SHANLIC LIFE" class="logo">
+        <button id="add-note-btn" title="新建文档"><i class="fas fa-plus"></i></button>
+      </div>
+      <div class="note-list" id="note-list">
+        <!-- 文档列表将通过 JS 动态生成 -->
+      </div>
+    </div>
+
+    <!-- 主内容区域 -->
+    <div class="main-content">
+      <!-- 顶部导航栏 -->
+      <div class="top-bar">
+        <div class="search-container">
+          <i class="fas fa-search"></i>
+          <input type="text" id="search-input" placeholder="Search">
+          <span class="shortcut-hint">Ctrl K</span>
+        </div>
+        <div class="note-info">
+          <span id="last-modified">最后修改时间: -</span>
+        </div>
+        <div class="user-profile">
+          <a href="https://github.com/" target="_blank" title="前往 GitHub">
+            <img src="https://github.githubassets.com/images/modules/logos_page/GitHub-Mark.png" alt="User Avatar"
+              class="avatar">
+          </a>
+        </div>
+      </div>
+
+      <!-- 文档编辑/预览区 -->
+      <div class="editor-container" id="editor-container" style="display: none;">
+        <input type="text" id="note-title" placeholder="请输入标题...">
+        <div class="content-area">
+          <textarea id="note-content" placeholder="在此输入内容 (支持 Markdown 标题 # ## ###)"></textarea>
+          <div class="preview-area">
+            <div id="markdown-preview"></div>
+          </div>
+          <div class="toc-sidebar" id="toc-sidebar">
+            <h3>目录</h3>
+            <ul id="toc-list"></ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="empty-state" class="empty-state">
+        <i class="fas fa-book-open"></i>
+      </div>
+    </div>
+  </div>
+
+  <!-- 自定义右键菜单 -->
+  <div id="context-menu" class="context-menu">
+    <div class="menu-item" id="open-note-option">
+      <i class="fas fa-edit"></i> 打开/编辑
+    </div>
+    <div class="menu-item" id="delete-note-option">
+      <i class="fas fa-trash-alt"></i> 删除文档
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+
+</html>
